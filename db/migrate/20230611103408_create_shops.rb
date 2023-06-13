@@ -1,6 +1,7 @@
 class CreateShops < ActiveRecord::Migration[6.1]
   def change
     create_table :shops do |t|
+      t.string :shop_name, null: false #店舗
       t.string :address, null: false #住所
       t.time :opneing, null: false #営業開始時間
       t.time :closed, null: false #営業終了時間
