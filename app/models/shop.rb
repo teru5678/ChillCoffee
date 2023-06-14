@@ -1,6 +1,7 @@
 class Shop < ApplicationRecord
     has_many :comments,  dependent: :destroy
     has_many :favorites, dependent: :destroy
+    has_many :bookmarks, dependent: :destroy
     has_many :shop_tags, dependent: :destroy
     has_many :tags,      through: :shop_tags
     has_one_attached :image
@@ -25,5 +26,9 @@ class Shop < ApplicationRecord
             new_shop_tag = Tag.find_or_create_by(name: new)
             self.tags << new_shop_tag
         end
+    end
+
+    def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
     end
 end
