@@ -1,2 +1,26 @@
-<h1>Shops#index</h1>
-<p>Find me in app/views/shops/index.html.erb</p>
+<div class = "container">
+  <div class = "row mt-5">
+    <h3>店舗一覧</h3>
+  </div>
+</div>
+  <div class = "row">
+    <% @shops.each do |shop| %>
+    <div class = "col-md-3">
+      <div class = "card">
+        <%= image_tag shop.image, class: 'card-img-top' %>
+        <div class = "card-header">
+          <%= link_to shop.name, shop_path(shop.id) %>
+        </div>
+          <ul class = "list-group list-group-flush">
+            <li class = "list-group-item"><%= shop.address %></li>
+            <li class = "list-group-item"><%= shop.opneing %></li>
+            <li class = "list-group-item"><%= shop.closed %></li>
+            <% shop.tags.each do |tag| %>
+            <li class = "list-group-item"><%= tag.name %></li>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

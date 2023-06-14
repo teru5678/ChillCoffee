@@ -1,2 +1,47 @@
-<h1>Shops#new</h1>
-<p>Find me in app/views/shops/new.html.erb</p>
+<div class = "container">
+  <div class = "row mt-5">
+    <h3>店舗登録</h3>
+  </div>
+    <%= form_with model: @shop do |f| %>
+    <div class = "row">
+      <label class = "col-2 mt-2">店舗名</label>
+        <%= f.text_field :name, autofocus: true, class: 'form-control col-8' %>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">営業時間</label>
+        <%= f.text_field :opneing, class: 'form-control col-8' %>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">定休日</label>
+        <%= f.text_field :closed, class: 'form-control col-8' %>
+    </div>
+    
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">tel</label>
+        <%= f.text_field :phone, class: 'form-control col-8' %>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">画像</label>
+      　　 <%= f.file_field :image, accept: "image/*" %>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">タグ</label>
+        <%= text_field :tag, "name_text", {value: @shop.tags.pluck(:name).join(' '), class: 'form-control col-8'} %><br>
+        <small class = "col offset-2">スペースで区切ることで複数指定できます</small>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-2 mt-2">住所</label>
+        <%= f.text_field :address, placeholder: "住所を入力してください", class: 'form-control col-8' %><br>
+        <samll class = "col offset-2">※住所を入力すると自動で地図（GoogleMap）が表示されます</samll>
+    </div>
+
+    <div class = "row mt-3">
+      <%= f.submit "新規登録", class: 'btn btn-success col-4 mx-auto' %>
+    </div>
+    <% end %>
+</div>
