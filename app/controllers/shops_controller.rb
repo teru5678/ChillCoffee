@@ -11,11 +11,14 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
-  def craete
+  def create
     @shop = Shop.new(shop_params)
+    
+    @shop.latitude = 33.33 # 仮の数値 GoogleMap実装時に必ず外す事
+    @shop.longitude = 33.33 #
     if @shop.save
-      @shop.save_tags(params[:shop][:tag])
-    redirect_to shop_path(@shop)
+      @shop.save_tags(params[:tag][:name_text])
+      redirect_to shop_path(@shop)
     else
       render :new
     end
@@ -24,17 +27,17 @@ class ShopsController < ApplicationController
   def edit
     @shop = Shop.find(prams[:id])
   end
-  
+
   def update
     @shop = Shop.find(params[:id])
-    if @shop.update(post_params)
-      @shop.save_tags(params[:shop][:tag])
+    if @shop.update(shop_params)
+      @shop.save_tags(params[:tag][:name_text])
       redirect_to shop_path(@shop)
     else
       render :edit
     end
   end
-  
+
   def destroy
     @shop = Shop.find(params[:id])
     @shop.destroy
@@ -43,6 +46,6 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:Shop).permit(:shop_name,:address,:opneing,:closed,:phone,:latitude,:longitude)
+    params.require(:shop).permit(:image,:name,:address,:opneing,:closed,:phone,:latitude,:longitude)
   end
 end

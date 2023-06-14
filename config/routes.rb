@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   end
   resources :users, only:[:index,:show,:edit]
   resources :shops, only:[:new,:index,:show,:create,:edit,:update,:destroy]
+  resources :tags,  only:[:index,:show,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

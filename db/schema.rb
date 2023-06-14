@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_13_050226) do
+ActiveRecord::Schema.define(version: 2023_06_13_121753) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 2023_06_13_050226) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string "shop_name", null: false
+    t.string "name", null: false
     t.string "address", null: false
-    t.time "opneing", null: false
-    t.time "closed", null: false
+    t.string "opneing", null: false
+    t.string "closed", null: false
     t.string "phone", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
