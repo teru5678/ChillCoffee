@@ -1,0 +1,10 @@
+<% shop.comments.each do |comment| %>
+  <%= comment.comment %>
+  <% if current_user.admin != true %>
+  <%= link_to "削除", shop_comment_path(shop.id), class: 'btn btn-denger' %>
+  <% end %>
+
+  <% if current_user.admin == true %>
+  <%= link_to "削除", shop_comment_path(shop.id), class: 'btn btn-denger' %>
+  <% end %>
+<% end %>

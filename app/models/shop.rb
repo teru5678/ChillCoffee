@@ -5,7 +5,7 @@ class Shop < ApplicationRecord
     has_many :shop_tags, dependent: :destroy
     has_many :tags,      through: :shop_tags
     has_one_attached :image
-    #geocoderを使うために適用するモデル
+    #addressを登録した際に緯度、経度のカラムに自動的に値を入れてくれるようになる
     geocoded_by :address
     after_validation :geocode, if: :address_changed?
 

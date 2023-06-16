@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only:[:index,:show,:edit]
   resources :shops, only:[:new,:index,:show,:create,:edit,:update,:destroy] do
     resource :bookmarks, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
   resources :tags,  only:[:index,:show,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
