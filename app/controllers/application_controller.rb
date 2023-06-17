@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
+  
+  def search
+    @q = Shop.ransack(params[:q])
+    @shop = @q.result(distinct: true)
+    @result = params[:q]&.values&.reject(&:blank?)
+  end
 
   protected
 

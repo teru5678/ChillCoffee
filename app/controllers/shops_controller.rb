@@ -9,8 +9,8 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @comments = @shop.comments
-    @comment = current_user.comments.new
+    @comment = Comment.new
+    @comments = Comment.all
   end
 
   def create
