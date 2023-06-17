@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, only:[:index,:show,:edit]
   resources :shops, only:[:new,:index,:show,:create,:edit,:update,:destroy] do
-    resource :bookmarks, only: [:create, :destroy]
+    resources :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
   resources :tags,  only:[:index,:show,:destroy]

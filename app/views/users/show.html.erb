@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row justify-content-between mt-5">
-    <h3 class = "col-4">ユーザー一覧</h3>
+    <h3 class = "col-4"><%= @user.name %>さんのページ</h3>
     <div class = "col-4">
       <%= link_to "プロフィールを編集する", edit_user_path(@user.id), class: 'btn btn-success' %>
     </div>
@@ -8,15 +8,18 @@
 
   <div class = "row justify-content-center" >
     <h3 class = "col-4">ブックマーク一覧</h3>
+    <div>
     <% @bookmarks.each do |bookmark| %>
+    <%= image_tag bookmark.shop.image %>
     <%= bookmark.shop.name %>
     <%= bookmark.shop.address %>
     <%= bookmark.shop.opneing %>
     <%= bookmark.shop.phone %>
     <%= bookmark.shop.closed %>
-    <% bookmark.tags.each do |tag| %>
+    <% bookmark.shop.tags.each do |tag| %>
     <%= tag.name %>
     <% end %>
     <% end %>
+    </div>
   </div>
 </div>
