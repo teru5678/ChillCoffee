@@ -73,4 +73,9 @@
   <div class = "row">
     <%= render 'shops/comment_form', shop: @shop %>
   </div>
+  <div class = "row justify-content-center">
+    <% if current_user.admin == true %>
+    <%= link_to "お店を削除する", shop_path(@shop), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+    <% end %>
+  </div>
 </div>
