@@ -1,0 +1,11 @@
+<% comments.each do |comment| %>
+  <%= comment.user.name %>
+  <%= comment.comment %>
+  <% if comment.user == current_user %>
+  <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete, class: 'btn btn-danger' %>
+  <% end %>
+
+  <% if current_user.admin == true %>
+  <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete, class: 'btn btn-danger' %>
+  <% end %>
+<% end %>

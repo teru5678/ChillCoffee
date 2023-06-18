@@ -1,10 +1,12 @@
 class Shop < ApplicationRecord
+    belongs_to :user
     has_many :comments,  dependent: :destroy
     has_many :favorites, dependent: :destroy
+    has_many :bookmarks, dependent: :destroy
     has_many :shop_tags, dependent: :destroy
     has_many :tags,      through: :shop_tags
     has_one_attached :image
-    #geocoderを使うために適用するモデル
+    #addressを登録した際に緯度、経度のカラムに自動的に値を入れてくれるようになる
     geocoded_by :address
     after_validation :geocode, if: :address_changed?
 
@@ -25,5 +27,9 @@ class Shop < ApplicationRecord
             new_shop_tag = Tag.find_or_create_by(name: new)
             self.tags << new_shop_tag
         end
+    end
+
+    def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
     end
 end

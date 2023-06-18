@@ -9,13 +9,12 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.all
   end
 
   def create
     @shop = Shop.new(shop_params)
-    
-    @shop.latitude = 33.33 # 仮の数値 GoogleMap実装時に必ず外す事
-    @shop.longitude = 33.33 #
     if @shop.save
       @shop.save_tags(params[:tag][:name_text])
       redirect_to shop_path(@shop)
@@ -25,7 +24,7 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = Shop.find(prams[:id])
+    @shop = Shop.find(params[:id])
   end
 
   def update

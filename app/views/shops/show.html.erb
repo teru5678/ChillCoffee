@@ -1,2 +1,81 @@
-<h1>Shops#show</h1>
-<p>Find me in app/views/shops/show.html.erb</p>
+<div class = "container">
+  <div class = "row mt-5">
+    <h3 class = "col">店舗詳細</h3>
+    <div class = "bookmark col">
+      <% if @shop.bookmarked_by?(current_user) %>
+        <%= link_to shop_bookmark_path(@shop), method: :delete do %>
+        <i class="fa-solid fa-bookmark"></i>
+        <% end %>
+      <% else %>
+        <%= link_to shop_bookmarks_path(@shop), method: :post do %>
+        <i class="fa-regular fa-bookmark"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <% if current_user.admin == true %>
+    <%= link_to "編集する", edit_shop_path(@shop), class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+<%= render "shops/list", shop: @shop %>
+<div class  = "container">
+  <div class = "row">
+    <h4>マップ</h4>
+      <script type="text/javascript">
+        function initMap() {
+      //latitude,longitudeから位置を特定
+          var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: test
+                    });
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          var contentString = '住所：<%= @shop.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+      //Map上の指定した位置にピンを挿して表示する
+          var marker = new google.maps.Marker({
+                       position:test,
+                       map: map,
+                       title: contentString
+                       });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+          }
+      </script>
+
+      <!--自身のAPIキーを取得する-->
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+      </script>
+
+      <!--表示するMapのcss-->
+      <style type="text/css">
+      #map { height: 500px;
+             width: 500px;}
+      </style>
+    <div id="map"></div>
+  </div>
+</div>
+<div class = "container">
+  <div class = "row">
+    <h4>コメント一覧</h4>
+  </div>
+  <div class = "row">
+    <%= render 'shops/comment', comments: @comments %>
+  </div>
+  <div class = "row">
+    <%= render 'shops/comment_form', shop: @shop, comment: @comment %>
+  </div>
+  <div class = "row justify-content-center">
+    <% if current_user.admin == true %>
+    <%= link_to "お店を削除する", shop_path(@shop), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>
