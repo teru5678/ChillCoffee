@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-  get "search" => "searches#search"
 
-  resources :users, only:[:index,:show,:edit]
+  resources :users, only:[:index,:show,:edit] do
+    get :bookmarks, on: :collection
+  end
   resources :shops, only:[:new,:index,:show,:create,:edit,:update,:destroy] do
     resources :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
