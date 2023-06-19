@@ -3,8 +3,6 @@ class ShopsController < ApplicationController
     @shop = Shop.new
   end
 
-  def
-
   def index
     @shops = Shop.all
   end
