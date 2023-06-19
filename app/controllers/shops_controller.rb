@@ -16,12 +16,17 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @shop = Shop.new(shop_params)
-    if @shop.save
-      @shop.save_tags(params[:tag][:name_text])
-      redirect_to shop_path(@shop)
+    if current_user.admin
+      @shop = Shop.new(shop_params)
+      @shop.user_id = current_user.id
+      if @shop.save
+        @shop.save_tags(params[:tag][:name_text])
+        redirect_to shop_path(@shop)
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to root_path
     end
   end
 
@@ -30,12 +35,16 @@ class ShopsController < ApplicationController
   end
 
   def update
-    @shop = Shop.find(params[:id])
-    if @shop.update(shop_params)
-      @shop.save_tags(params[:tag][:name_text])
-      redirect_to shop_path(@shop)
+    if current_user.admin
+      @shop = Shop.find(params[:id])
+      if @shop.update(shop_params)
+        @shop.save_tags(params[:tag][:name_text])
+        redirect_to shop_path(@shop)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_path
     end
   end
 
