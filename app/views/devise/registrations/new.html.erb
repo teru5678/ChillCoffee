@@ -1,0 +1,56 @@
+<div class = "container">
+  <div class = "row mt-5">
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <h2>新規登録</h2>
+  </div>
+
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+    <div class ="row mt-3">
+      <label class = "col-3">ユーザー名</label>
+      <div class = "field col-8">
+        <%=f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <label class = "col-3 ">メールアドレス</label>
+        <div class = "field col-8">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "sample@example.com"%>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+      <label class = "col-3">パスワード</label>
+        <div class = "field col-8">
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class = "row mt-3">
+      <label class = "col-3">パスワード<br>（もう一度入力してください）</label>
+      <div class="field col-8">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="actions row mt-3 offset-3">
+      <%= f.submit "新規登録", class: 'btn btn-success col-3' %>
+    </div>
+    <% end %>
+
+    <div class = "row">
+      <p class = "col">既に登録済の方</p>
+    </div>
+    <div class = "row offset-3">
+      <div class = "col">
+        <%= link_to "こちら", new_user_session_path %>からログインしてください
+      </div>
+    </div>
+
+  <div class = "row">
+    <p class = "col">ゲストログインの方</p>
+  </div>
+  <div class = "actions row offset-3">
+    <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post, class: 'btn btn-warning' %>
+  </div>
+</div>

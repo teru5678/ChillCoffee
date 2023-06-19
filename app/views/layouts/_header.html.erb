@@ -1,0 +1,42 @@
+<% if user_signed_in? %>
+<% if current_user.admin == true %>
+  <li class = "nav-item">
+    <%= link_to "店舗登録", new_shop_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "店舗一覧", shops_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "会員一覧", users_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+  </li>
+<% end %>
+<% end %>
+<% if user_signed_in? %>
+<% if current_user.admin != true %>
+  <li class = "nav-item">
+    <%= link_to "店舗一覧", shops_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-secondary" %>
+  </li>
+<% end %>
+<% else %>
+  <li class = "nav-item">
+    <%= link_to "店舗一覧", shops_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-secondary" %>
+  </li>
+  <li class = "nav-item">
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary" %>
+  </li>
+<% end %>

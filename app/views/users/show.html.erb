@@ -1,0 +1,32 @@
+<div class = "container">
+  <div class = "row justify-content-between mt-5">
+    <h3 class = "col-4"><%= @user.name %>さんのページ</h3>
+    <div class = "col-4">
+      <%= link_to "プロフィールを編集する", edit_user_path(@user.id), class: 'btn btn-success' %>
+    </div>
+  </div>
+
+  <div class = "row justify-content-center" >
+    <h3 class = "col-4">ブックマーク一覧</h3>
+    <div>
+      <% @bookmark_list.each do |shop| %>
+    <%= image_tag shop.image %>
+    <%= link_to shop.name, shop_path(shop.id) %>
+    <%= shop.address %>
+    <%= shop.opneing %>
+    <%= shop.phone %>
+    <%= shop.closed %>
+    <% shop.tags.each do |tag| %>
+    <%= tag.name %>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class = "row justify-content-center">
+  <h3 class = "col-4">コメント一覧</h3>
+</div>
+<div>
+  <%= render 'shops/comment', comments: @comments %>
+</div>

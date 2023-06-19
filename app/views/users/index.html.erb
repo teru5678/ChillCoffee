@@ -1,0 +1,26 @@
+<div class = "container">
+  <div class = "row mt-5">
+    <h3>ユーザー一覧</h3>
+  </div>
+  <table class = "table table-bordere">
+    <thead class = "table-secondary">
+      <tr>
+        <th>ユーザーID</th>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+
+    <% @users.each_with_index do |user, i | %>
+    <% unless user.email == 'guest@example.com' %>
+    <tbody>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= link_to user.name, user_path(user.id) %></td>
+        <td><%= user.email %></td>
+      </tr>
+    </tbody>
+    <% end %>
+    <% end %>
+  </table>
+</div>
