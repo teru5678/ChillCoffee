@@ -12,7 +12,6 @@
     </thead>
 
     <% @users.each_with_index do |user, i | %>
-    <% unless user.email == 'guest@example.com' %>
     <tbody>
       <tr>
         <td><%= i+1 %></td>
@@ -20,7 +19,6 @@
         <td><%= user.email %></td>
       </tr>
     </tbody>
-    <% end %>
     <% end %>
   </table>
 </div>

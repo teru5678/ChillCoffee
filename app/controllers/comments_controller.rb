@@ -5,14 +5,14 @@ class CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.shop_id = @shop.id
     comment.save
-    redirect_to shop_path(@shop)
+    redirect_to request.referer
   end
 
   def destroy
     @shop = Shop.find(params[:shop_id])
     @comments = @shop.comments
     Comment.find_by(id: params[:id], shop_id: params[:shop_id]).destroy
-    redirect_to shop_path(params[:shop_id])
+    redirect_to request.referer
   end
 
   private

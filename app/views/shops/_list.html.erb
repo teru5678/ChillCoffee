@@ -1,25 +1,28 @@
-<div class = "container">
-  <div class = "row">
-    <h4><%= shop.name %></h4>
-  </div>
-  <div class = "row">
-    <div class = "col-2">
-      <% if shop.image.attached? %>
-      <%= image_tag shop.image, size: "300x300" %>
-      <% end %>
+<div class = "shop row justify-content-center">
+    <div class = "shop col-lg-4">
+      <%= image_tag shop.image, size: "300x300"%>
     </div>
-    <div class = "col-7 offset-1">
-      <table class = "shop">
-        <tr><th>住所</th><td><%= shop.address %></td></tr>
-        <tr><th>電話番号</th><td><%= shop.phone %></td></tr>
-        <tr><th>営業時間</th><td><%= shop.opneing %></td></tr>
-        <tr><th>定休日</th><td><%= shop.closed %></td></tr>
-      </table>
-      <div class = "tag-item">
+    <div class = "shop col-lg-7">
+      <p>
+        <strong>住所</strong><br>
+        <%= shop.address %>
+      </p>
+      <p>
+        <strong>電話番号</strong><br>
+        <%= shop.phone %>
+      </p>
+      <p>
+        <strong>営業時間</strong><br>
+        <%= shop.opneing %>
+      </p>
+      <p>
+        <strong>定休日</strong><br>
+        <%= shop.closed %>
+      </p>
+      <p class = "tags">
         <% shop.tags.each do |tag| %>
-          <i class="fas fa-tag"><%= tag.name %></i>
+        <i class="fas fa-tag"><%= tag.name %></i>
         <% end %>
-      </div>
+      </p>
     </div>
   </div>
-</div>
