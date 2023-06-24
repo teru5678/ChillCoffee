@@ -1,22 +1,23 @@
 <div class = "container">
-  <div class = "row mt-5">
-    <h3 class = "col">店舗詳細</h3>
-    <div class = "bookmark col">
+  <div class = "row justify-content-between mt-5">
+    <div class = "col-4">
+      <h3><%= @shop.name %></h3>
+    </div>
+    <div class = "col-3">
       <% if @shop.bookmarked_by?(current_user) %>
         <%= render "shops/bookmarked", shop: @shop %>
       <% else %>
         <%= render "shops/bookmark", shop: @shop %>
       <% end %>
     </div>
-    <% if current_user.admin %>
-    <%= link_to "編集する", edit_shop_path(@shop), class: "btn btn-success" %>
-    <% end %>
   </div>
-</div>
+
 <%= render "shops/list", shop: @shop %>
 <div class  = "container">
-  <div class = "row">
+  <div class = "row justify-content-center">
     <h4>マップ</h4>
+  </div>
+  <div class ="row justify-content-center">
       <script type="text/javascript">
         function initMap() {
       //latitude,longitudeから位置を特定
@@ -54,24 +55,28 @@
       <!--表示するMapのcss-->
       <style type="text/css">
       #map { height: 500px;
-             width: 500px;}
+             width: 70%;}
       </style>
     <div id="map"></div>
   </div>
 </div>
-<div class = "container">
-  <div class = "row">
+  <div class = "row justify-content-center mt-3">
     <h4>コメント一覧</h4>
   </div>
-  <div class = "row">
-    <%= render 'shops/comment', comments: @comments %>
-  </div>
-  <div class = "row">
+  <div>
     <%= render 'shops/comment_form', shop: @shop, comment: @comment %>
   </div>
-  <div class = "row justify-content-center">
-    <% if current_user.admin == true %>
+  <div>
+    <%= render 'shops/comment', comments: @comments %>
+  </div>
+  <div class = "row mt-2 justify-content-center">
+    <% if current_user.admin %>
+    <div class = "col-3">
     <%= link_to "お店を削除する", shop_path(@shop), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+    </div>
+    <div class = "col-3">
+    <%= link_to "編集する", edit_shop_path(@shop), class: "btn btn-success" %>
+    </div>
     <% end %>
   </div>
 </div>

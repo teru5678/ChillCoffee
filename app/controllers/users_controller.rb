@@ -11,9 +11,6 @@ class UsersController < ApplicationController
     @comments = Comment.where(user_id: @user.id)
   end
 
-  def edit
-  end
-
   private
     def user_admin
        @users = User.all
