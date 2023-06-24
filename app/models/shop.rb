@@ -29,7 +29,14 @@ class Shop < ApplicationRecord
         end
     end
 
-    
+    def self.ransackable_attributes(auth_object = nil)
+      ["address", "name"]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      ["bookmarks", "comments", "favorites", "image_attachment", "image_blob", "shop_tags", "tags", "user"]
+    end
+
     def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
     end
