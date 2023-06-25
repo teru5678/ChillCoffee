@@ -3,17 +3,12 @@
     <div class= "col">
       <h3>店舗一覧</h3>
     </div>
-    <%= render "shops/search_form", q: @q %>
+    <div class = "search_form">
+      <%= render "shops/search_form", q: @q %>
     </div>
-    <div class = "row">
-      <div class = "col-lg-2">
-        <% @tags.each do |tag| %>
-        <%= link_to tag.name, tag_path(tag.id) %>
-        <% end %>
-      </div>
-      <div class = "col-lg-8">
-    <%= render "shops/shops", shops: @shops %>
-      </div>
+    </div>
+    <div class = "shops">
+      <%= render "shops/shops", shops: @shops %>
     </div>
 </div>
 

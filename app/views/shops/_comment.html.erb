@@ -3,12 +3,22 @@
   <% comments.each do |comment| %>
     <div class ="col-lg-4">
       <div class = "card mt-3 shadow-sm">
-        <p class = "card-title"><%= comment.user.name %>さんのコメント</p>
-        <p class = "card-text"><%= comment.comment %>
-          <% if comment.user == current_user %>
-          <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete, class: 'btn btn-danger' %>
-          <% end %>
-        </p>
+        <div class = "row justify-content-center">
+           <p class = "card-title"><%= comment.user.name %>さんのコメント<i class="fa-regular fa-comment"></i></p>
+        </div>
+        <div class = "row justify-content-center">
+          <div class = "col-4">
+            <p class = "card-text"><%= comment.comment %>
+            <% if comment.user == current_user %>
+            </p>
+          </div>
+          <div class = "col-4">
+            <%= link_to shop_comment_path(comment.shop, comment), method: :delete do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>

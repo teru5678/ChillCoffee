@@ -21,7 +21,7 @@
       </p>
       <p class = "tags">
         <% shop.tags.each do |tag| %>
-        <i class="fas fa-tag"><%= tag.name %></i>
+        <i class="fas fa-tag"><%= link_to tag.name, tag_path(tag.id) %></i>
         <% end %>
       </p>
     </div>

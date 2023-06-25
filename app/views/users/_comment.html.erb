@@ -1,27 +1,28 @@
 <div class = "row">
-<% if comments.present? %>
+  <% if comments.present? %>
   <% comments.each do |comment| %>
     <div class ="col-lg-4">
       <div class = "card mt-3 shadow-sm">
-        <div class = "row">
-           <p class = "card-title"><%= comment.shop.name %>へのコメント</p>
+        <div class = "row justify-content-center">
+           <p class = "card-title"><%= comment.shop.name %>へのコメント<i class="fa-regular fa-comment"></i></p>
         </div>
-        <div class = "row">
+        <div class = "row justify-content-between">
           <div class = "col">
-            <p class = "card-text"><%= comment.comment %></p>
+            <p class = "card-text"><%= comment.comment %>
+            </p>
           </div>
-          <div class 
-          <% if comment.user == current_user %>
-          <%= link_to shop_comment_path(comment.shop, comment), method: :delete do%>
-          <i class="fa-solid fa-trash"></i>
-          <% end %>
-          <% end %>
+          <div class = "col">
+            <% if comment.user == current_user %>
+            <%= link_to shop_comment_path(comment.shop, comment), method: :delete do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+            <% end %>
+          </div>
         </div>
-          
       </div>
     </div>
   <% end %>
-  </div>
+</div>
   <% else %>
    <div class = "row mx-auto">
      <p>コメントはありません</p>

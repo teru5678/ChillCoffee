@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-  resources :tags,  only:[:index,:show,:destroy]
+  resources :tags,  only:[:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
