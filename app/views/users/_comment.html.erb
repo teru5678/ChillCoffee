@@ -1,0 +1,29 @@
+<div class = "row">
+<% if comments.present? %>
+  <% comments.each do |comment| %>
+    <div class ="col-lg-4">
+      <div class = "card mt-3 shadow-sm">
+        <div class = "row">
+           <p class = "card-title"><%= comment.shop.name %>へのコメント</p>
+        </div>
+        <div class = "row">
+          <div class = "col">
+            <p class = "card-text"><%= comment.comment %></p>
+          </div>
+          <div class 
+          <% if comment.user == current_user %>
+          <%= link_to shop_comment_path(comment.shop, comment), method: :delete do%>
+          <i class="fa-solid fa-trash"></i>
+          <% end %>
+          <% end %>
+        </div>
+          
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <% else %>
+   <div class = "row mx-auto">
+     <p>コメントはありません</p>
+   </div>
+  <% end %>

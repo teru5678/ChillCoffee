@@ -5,8 +5,8 @@ class ShopsController < ApplicationController
 
   def index
     @q = Shop.ransack(params[:q])
-    @shop = @q.result.includes(:name, :addrres).order(created_at: :desc)
-    @shops = Shop.all
+    @shops = @q.result(distinct: true)
+    @tags = Tag.all
   end
 
   def show
@@ -54,10 +54,8 @@ class ShopsController < ApplicationController
     redirect_to shops_path
   end
 
-  def serach
-
-  end
   private
+
   def shop_params
     params.require(:shop).permit(:image,:name,:address,:opneing,:closed,:phone,:latitude,:longitude)
   end

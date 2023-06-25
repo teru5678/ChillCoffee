@@ -3,45 +3,17 @@
     <div class= "col">
       <h3>店舗一覧</h3>
     </div>
-    <div class = "col">
-      <%= search_form_for @q do |f| %>
-        <%= f.search_field :name_or_address_cont %>
-        <%= f.submit %>
-      <% end %>
+    <%= render "shops/search_form", q: @q %>
     </div>
-  </div>
-  <div class = "shops row">
-    <% @shops.each do |shop| %>
-    <div class = "shop-item col-lg-4">
-      <% if shop.image.attached? %>
-      <%= link_to shop_path(shop.id) do %>
-      <%= image_tag shop.image, size: "300x300"%>
-      <% end %>
-      <% end %>
-    </div>
-    <div class = "shop-item col-lg-7">
-      <h4>
-        <%= link_to shop.name, shop_path(shop.id) %>
-      </h4>
-      <p>
-        <strong>住所</strong><br>
-        <%= shop.address %>
-      </p>
-      <p>
-        <strong>営業時間</strong><br>
-        <%= shop.opneing %>
-      </p>
-      <p>
-        <strong>定休日</strong><br>
-        <%= shop.closed %>
-      </p>
-      <p class = "tags">
-        <% shop.tags.each do |tag| %>
-        <i class="fas fa-tag"><%= tag.name %></i>
+    <div class = "row">
+      <div class = "col-lg-2">
+        <% @tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag.id) %>
         <% end %>
-      </p>
+      </div>
+      <div class = "col-lg-8">
+    <%= render "shops/shops", shops: @shops %>
+      </div>
     </div>
-    <% end %>
-  </div>
 </div>
 

@@ -11,7 +11,7 @@ class Shop < ApplicationRecord
     after_validation :geocode, if: :address_changed?
 
     def save_tags(tags)
-        #タグを半角スペース区切りで分割し配列にする
+        #タグを半角半角スペース区切りで分割し配列にする
         tag_list = tags.split(/[[:blank:]]+/)
         #店舗に関連づいたタグを取得する
         current_tags = self.tags.pluck(:name)
@@ -34,7 +34,7 @@ class Shop < ApplicationRecord
     end
 
     def self.ransackable_associations(auth_object = nil)
-      ["bookmarks", "comments", "favorites", "image_attachment", "image_blob", "shop_tags", "tags", "user"]
+      []
     end
 
     def bookmarked_by?(user)

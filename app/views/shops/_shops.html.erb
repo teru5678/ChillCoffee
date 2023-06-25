@@ -1,16 +1,10 @@
-<div class = "container">
-  <div class = "row mt-5">
-    <h3><%= @user.name %>さんのページ</h3>
-  </div>
-
-  <div class = "row justify-content-center">
-    <h3 class = "col-4">ブックマーク一覧</h3>
-  </div>
-  <div class = "row">
-    <% @bookmark_list.each do |shop| %>
+<div class = "shops row">
+  <% @shops.each do |shop| %>
     <div class = "shop-item col-lg-4">
-      <%= link_to shop_path(shop.id) do %>
-      <%= image_tag shop.image, size: "300x300"%>
+      <% if shop.image.attached? %>
+        <%= link_to shop_path(shop.id) do %>
+        <%= image_tag shop.image, size: "300x300"%>
+        <% end %>
       <% end %>
     </div>
     <div class = "shop-item col-lg-7">
@@ -29,19 +23,11 @@
         <strong>定休日</strong><br>
         <%= shop.closed %>
       </p>
-      <p>
+      <p class = "tags">
         <% shop.tags.each do |tag| %>
         <i class="fas fa-tag"><%= tag.name %></i>
         <% end %>
       </p>
     </div>
-    <% end %>
-  </div>
-
-<div class = "row justify-content-center mt-3">
-  <h3 class = "col-4">コメント一覧</h3>
-</div>
-<div>
-  <%= render 'users/comment', comments: @comments %>
-</div>
+  <% end %>
 </div>
