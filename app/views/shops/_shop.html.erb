@@ -1,5 +1,5 @@
 <div class = "shops row">
-  <% @shops.each do |shop| %>
+  <% shops.each do |shop| %>
     <div class = "shop-item col-lg-4">
       <% if shop.image.attached? %>
         <%= link_to shop_path(shop.id) do %>

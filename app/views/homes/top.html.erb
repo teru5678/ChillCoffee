@@ -2,15 +2,19 @@
   <div class="d-flex align-items-center justify-content-center" style="height:400px;">
     <h1>Chill Coffee</h1>
   </div>
-  <div class = "d-flex align-items-center justify-content-center">
+  <div class = "text-center">
     <p>
       ようこそChill Coffeeへ!<br>
-      このサイトでは喫茶店を探すことができます。
+      このサイトでは喫茶店を探すことができます。<br>
+      タグのリンクを押すとタグの店舗一覧を探すことができます。
     </p>
   </div>
-  <div class = "d-flex align-items-center justify-content-center">
-    <%= link_to "喫茶店を探す", shops_path, class:'btn btn-primary rounded-pill'%>
+  <div class = "row">
+    <div class = "col-8 mx-auto">
+      <%= render "shops/search_form", q: @q%>
+    </div>
   </div>
-  <div class = "d-flex align-items-center justify-content-center">
-    
+  <div class = "row">
+    <%= link_to "喫茶店一覧", shops_path, class: "btn btn-primary btn-blok col-7 mt-3 mx-auto"%>
+  </div>
   </div>

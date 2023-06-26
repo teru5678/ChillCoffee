@@ -5,7 +5,7 @@ class ShopsController < ApplicationController
 
   def index
     @q = Shop.ransack(params[:q])
-    @shops = @q.result(distinct: true)
+    @shops = @q.result.includes(:user).page(params[:page]).per(5) #検索結果（検索しなければ全件取得）
   end
 
   def show
