@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get :bookmarks, on: :collection
   end
   resources :shops, only:[:new,:index,:show,:create,:edit,:update,:destroy] do
-    resources :bookmarks, only: [:create, :destroy]
+    resource :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
   resources :tags,  only:[:show]

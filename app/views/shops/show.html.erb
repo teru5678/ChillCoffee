@@ -4,11 +4,9 @@
       <h3><%= @shop.name %></h3>
     </div>
     <div class = "col-3">
-      <% if @shop.bookmarked_by?(current_user) %>
-        <%= render "shops/bookmarked", shop: @shop %>
-      <% else %>
-        <%= render "shops/bookmark", shop: @shop %>
-      <% end %>
+      <div id = "bookmark_buttons_<%= @shop.id %>">
+        <%= render "bookmarks/bookmark", shop: @shop %>
+      </div>
     </div>
   </div>
 

@@ -13,7 +13,7 @@
             </p>
           </div>
           <div class = "col-4">
-            <%= link_to shop_comment_path(comment.shop, comment), method: :delete do %>
+            <%= link_to shop_comment_path(comment.shop, comment), method: :delete, remote:true, data: {"turbolinks" => false} do %>
               <i class="fa-solid fa-trash"></i>
             <% end %>
             <% end %>
@@ -24,7 +24,7 @@
   <% end %>
   </div>
   <% else %>
-   <div class = "row mx-auto">
+   <div class = "row justify-content-center">
      <p>コメントはありません</p>
    </div>
   <% end %>
