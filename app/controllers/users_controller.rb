@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @users = User.page(params[:page])
   end
@@ -10,14 +11,4 @@ class UsersController < ApplicationController
     @bookmark_list = Shop.find(bookmarks)
     @comments = Comment.where(user_id: @user.id)
   end
-
-  private
-    def user_admin
-       @users = User.all
-       if  current_user.admin == false
-           redirect_to root_path
-       else
-           render action: "index"
-       end
-    end
 end

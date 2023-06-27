@@ -8,14 +8,20 @@
         </div>
         <div class = "row justify-content-center">
           <div class = "col-4">
-            <p class = "card-text"><%= comment.comment %>
-            <% if comment.user == current_user %>
-            </p>
+            <p class = "card-text"><%= comment.comment %></p>
           </div>
           <div class = "col-4">
-            <%= link_to shop_comment_path(comment.shop, comment), method: :delete, remote:true, data: {"turbolinks" => false} do %>
-              <i class="fa-solid fa-trash"></i>
+            <% if comment.user == current_user %>
+              <%= link_to shop_comment_path(comment.shop, comment), method: :delete do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
             <% end %>
+          </div>
+          <div class = "col-4">
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+              <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete ,class: "btn btn-sm btn-danger" %>
+              <% end %>
             <% end %>
           </div>
         </div>

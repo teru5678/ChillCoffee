@@ -18,6 +18,13 @@
             <% end %>
             <% end %>
           </div>
+          <div class = "col-4">
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+              <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete ,class: "btn btn-sm btn-danger" %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

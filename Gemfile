@@ -61,6 +61,7 @@ gem "dotenv-rails"
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'ransack'
+gem 'rails-i18n'
 
 group :production do
   gem 'mysql2'

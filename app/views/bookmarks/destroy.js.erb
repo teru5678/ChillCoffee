@@ -1,1 +1,1 @@
-$('#bookmark_buttons_<%= @shop.id %>').html("<%= j(render "bookmarks/bookmark", shop: @shop) %>");
+$('#bookmark_buttons_<%= @shop.id %>').html("<%= j(render "bookmarks/bookmark", shop: @shop, comments: @comments) %>");
