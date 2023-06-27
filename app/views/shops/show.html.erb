@@ -4,11 +4,9 @@
       <h3><%= @shop.name %></h3>
     </div>
     <div class = "col-3">
-      <% if @shop.bookmarked_by?(current_user) %>
-        <%= render "shops/bookmarked", shop: @shop %>
-      <% else %>
-        <%= render "shops/bookmark", shop: @shop %>
-      <% end %>
+      <div id = "bookmark_buttons_<%= @shop.id %>">
+        <%= render "bookmarks/bookmark", shop: @shop %>
+      </div>
     </div>
   </div>
 
@@ -60,23 +58,26 @@
     <div id="map"></div>
   </div>
 </div>
+
   <div class = "row justify-content-center mt-3">
     <h4>コメント一覧</h4>
   </div>
-  <div>
-    <%= render 'shops/comment', shop: @shop,comments: @comments %>
+  <div id = "shop-comment">
+    <%= render 'comments/comment', shop: @shop, comments: @comments %>
   </div>
-  <div>
-    <%= render 'shops/comment_form', shop: @shop, comment: @comment %>
+  <div id = "comment-form">
+    <%= render 'comments/comment_form', shop: @shop, comment: @comment %>
   </div>
   <div class = "row mt-2 justify-content-center">
-    <% if current_user.admin %>
-    <div class = "col-3">
-    <%= link_to "お店を削除する", shop_path(@shop), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
-    </div>
-    <div class = "col-3">
-    <%= link_to "編集する", edit_shop_path(@shop), class: "btn btn-success" %>
-    </div>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class = "col-3">
+        <%= link_to "お店を削除する", shop_path(@shop), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+      </div>
+      <div class = "col-3">
+        <%= link_to "編集する", edit_shop_path(@shop), class: "btn btn-success" %>
+      </div>
     <% end %>
+  <% end %>
   </div>
 </div>
