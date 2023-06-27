@@ -6,12 +6,14 @@ class Shop < ApplicationRecord
     has_many :shop_tags, dependent: :destroy
     has_many :tags,      through: :shop_tags
     has_one_attached :image
+    
+    
     #addressを登録した際に緯度、経度のカラムに自動的に値を入れてくれるようになる
     geocoded_by :address
     after_validation :geocode, if: :address_changed?
 
     def save_tags(tags)
-        #タグをスペース区切りで分割し配列にする
+        #タグを半角半角スペース区切りで分割し配列にする
         tag_list = tags.split(/[[:blank:]]+/)
         #店舗に関連づいたタグを取得する
         current_tags = self.tags.pluck(:name)
@@ -27,6 +29,14 @@ class Shop < ApplicationRecord
             new_shop_tag = Tag.find_or_create_by(name: new)
             self.tags << new_shop_tag
         end
+    end
+
+    def self.ransackable_attributes(auth_object = nil)
+      ["address", "name"]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      []
     end
 
     def bookmarked_by?(user)

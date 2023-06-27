@@ -12,7 +12,6 @@
     </thead>
 
     <% @users.each_with_index do |user, i | %>
-    <% unless user.email == 'guest@example.com' %>
     <tbody>
       <tr>
         <td><%= i+1 %></td>
@@ -21,6 +20,8 @@
       </tr>
     </tbody>
     <% end %>
-    <% end %>
   </table>
+  <div class = "row justify-content-center">
+    <%= paginate @users %>
+  </div>
 </div>

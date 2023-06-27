@@ -1,16 +1,19 @@
 class ShopsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @shop = Shop.new
   end
 
   def index
-    @shops = Shop.all
+    @q = Shop.ransack(params[:q])
+    @shops = @q.result.includes(:user).page(params[:page]).per(5) #検索結果（検索しなければ全件取得）
   end
 
   def show
     @shop = Shop.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = @shop.comments
   end
 
   def create
@@ -53,6 +56,7 @@ class ShopsController < ApplicationController
   end
 
   private
+
   def shop_params
     params.require(:shop).permit(:image,:name,:address,:opneing,:closed,:phone,:latitude,:longitude)
   end

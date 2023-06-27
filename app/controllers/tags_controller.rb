@@ -1,9 +1,6 @@
 class TagsController < ApplicationController
-  def index
-    @tags = Tag.all
-  end
-
   def show
     @tag = Tag.find(params[:id])
+    @shops = @tag.shops.page(params[:page]).per(5)
   end
 end

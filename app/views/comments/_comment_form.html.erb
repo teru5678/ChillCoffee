@@ -1,0 +1,9 @@
+<%= form_with model:[shop,comment] do |f| %>
+<div class = "row mt-2 justify-content-center">
+  <div class = "col-5">
+    <%= f.text_field :comment, placeholder: 'コメントする', class: 'form-control' %>
+  </div>
+  <div class = "col-2">
+  <%= f.submit "送信", class: 'btn btn-success' %>
+</div>
+<% end %>
