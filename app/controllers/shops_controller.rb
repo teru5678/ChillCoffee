@@ -22,8 +22,10 @@ class ShopsController < ApplicationController
       @shop.user_id = current_user.id
       if @shop.save
         @shop.save_tags(params[:tag][:name_text])
+        flash[:notice] = "登録に成功しました。"
         redirect_to shop_path(@shop)
       else
+        flash[:alret] = "登録に失敗しました。"
         render :new
       end
     else
@@ -40,8 +42,10 @@ class ShopsController < ApplicationController
       @shop = Shop.find(params[:id])
       if @shop.update(shop_params)
         @shop.save_tags(params[:tag][:name_text])
+        flash[:notice] = "情報が更新されました。"
         redirect_to shop_path(@shop)
       else
+        flash[:alret] = "更新に失敗しました。"
         render :edit
       end
     else
