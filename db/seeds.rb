@@ -8,7 +8,13 @@
 
 User.create!(name:  "teruki",
              email: "teruki@mail.com",
-             password:  "1234567",
-             password_confirmation: "1234567",
+             password: "1234567",
              admin: true)
 
+5.times do |n|
+  User.create(
+    name: "test#{n + 1}人目",
+    email: "test#{n + 1}@test.com",
+    password: "password"
+)
+end
