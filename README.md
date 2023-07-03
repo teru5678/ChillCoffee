@@ -17,15 +17,9 @@
 - 時間をかけずに喫茶店を探したい時
 - 喫茶店についての情報を知りたい時
 
-## 設計書
-- 検討中
-
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 検討中
