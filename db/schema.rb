@@ -59,15 +59,6 @@ ActiveRecord::Schema.define(version: 2023_06_20_102709) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "shop_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shop_id"], name: "index_favorites_on_shop_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
   create_table "shop_tags", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "shop_id", null: false
@@ -117,8 +108,6 @@ ActiveRecord::Schema.define(version: 2023_06_20_102709) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "shops"
   add_foreign_key "comments", "users"
-  add_foreign_key "favorites", "shops"
-  add_foreign_key "favorites", "users"
   add_foreign_key "shop_tags", "shops"
   add_foreign_key "shop_tags", "tags"
   add_foreign_key "shops", "users"
