@@ -5,15 +5,25 @@ class CommentsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     comment = current_user.comments.new(comment_params)
     comment.shop_id = @shop.id
-    comment.save
-    redirect_to request.referer
+    if comment.save
+      flash[:notice] = "コメントが追加されました。"
+      redirect_to request.referer
+    else
+      flash[:alret] = "コメントを入力してください。"
+      redirect_to request.referer
+    end
   end
 
   def destroy
     @shop = Shop.find(params[:shop_id])
     @comments = @shop.comments
-    Comment.find_by(id: params[:id], shop_id: params[:shop_id]).destroy
-    redirect_to request.referer
+    if Comment.find_by(id: params[:id], shop_id: params[:shop_id]).destroy
+      flash[:notice] = "コメントが削除されました。"
+      redirect_to request.referer
+    else
+      flash[:alret] = "コメントの削除に失敗しました。"
+      redirect_to request.referer
+    end
   end
 
   private
