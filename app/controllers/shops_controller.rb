@@ -34,7 +34,11 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = Shop.find(params[:id])
+    if current_user.admin
+      @shop = Shop.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -54,9 +58,17 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop = Shop.find(params[:id])
-    @shop.destroy
-    redirect_to shops_path
+    if current_user.admin
+      @shop = Shop.find(params[:id])
+      if @shop.destroy
+        redirect_to shops_path
+        flash[:notice] = "お店が削除されました。"
+      else
+        flash[:alret] = "削除に失敗しました"
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   private
@@ -64,4 +76,5 @@ class ShopsController < ApplicationController
   def shop_params
     params.require(:shop).permit(:image,:name,:address,:opneing,:closed,:phone,:latitude,:longitude)
   end
+
 end
