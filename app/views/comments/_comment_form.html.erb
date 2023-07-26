@@ -1,4 +1,42 @@
-<%= form_with model:[shop,comment] do |f| %>
+<div class = "row">
+<% if comments.present? %>
+  <% comments.each do |comment| %>
+    <div class ="col-lg-4">
+      <div class = "card mt-3 shadow-sm">
+        <div class = "row justify-content-center">
+           <p class = "card-title"><%= comment.user.name %>さんのコメント<i class="fa-regular fa-comment"></i></p>
+        </div>
+        <div class = "row justify-content-center">
+          <p class = "card-text">
+            <%= comment.comment %>
+          </p>
+          <div class = "col-1">
+          <% if comment.user == current_user %>
+            <%= link_to shop_comment_path(comment.shop, comment), method: :delete do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+        <div class = "row justify-content-end">
+          <div class = "col-4">
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+            <%= link_to "削除", shop_comment_path(comment.shop, comment), method: :delete,remote: true ,class: "btn btn-sm btn-danger" %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <% else %>
+   <div class = "row justify-content-center">
+     <p>コメントはありません</p>
+   </div>
+  <% end %>
+<%= form_with model:[shop,comment], remote: true do |f| %>
 <div class = "row mt-2 justify-content-center">
   <div class = "col-5">
     <%= f.text_field :comment, placeholder: 'コメントする', class: 'form-control' %>
