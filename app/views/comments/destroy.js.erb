@@ -1,1 +1,1 @@
-$('#comment-form').html("<%= j(render "comments/comment_form", shop: @shop, comment: @comment, comments: @comments ) %>");
+$('#comments_area').html("<%= j(render 'comments/comment_form', shop: @comment.shop) %>");
