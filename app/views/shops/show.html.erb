@@ -62,9 +62,13 @@
   <div class = "row justify-content-center mt-3">
     <h4>コメント一覧</h4>
   </div>
-  <div id = "comment-form">
-    <%= render 'comments/comment_form', shop: @shop, comment: @comment %>
+  <div id = "comment">
+    <%= render 'comments/comment', comments: @comments %>
   </div>
+  <div class = "comment_form">
+    <%= render 'comments/comment_form', shop: @shop, comment: @comment, comments: @comments %>
+  </div>
+
   <div class = "row mt-2 justify-content-center">
   <% if user_signed_in? %>
     <% if current_user.admin? %>

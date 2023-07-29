@@ -1,2 +1,2 @@
-$('#comments-form').html("<%= j(render 'comments/comment_form', shop: @shop, shop_comment: @shop_comment) %>")
+$('#comments_area').html("<%= j(render 'comments/comment_form', shop: @shop, comment: @comment ) %>")
 $("textarea").val('');
